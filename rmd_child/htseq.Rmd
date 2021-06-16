@@ -1,0 +1,7 @@
+## Counting features
+
+```{r htseq, echo=FALSE}
+#load("rnaseq_h.Rdata")
+kable(df_htseq, caption="Log file produced by feature counting script htseq_count") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```

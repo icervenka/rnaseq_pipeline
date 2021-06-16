@@ -1,0 +1,8 @@
+#!/bin/bash
+
+stranded=$1
+annotation=$2
+
+for f in *.bam; do
+	htseq-count -f bam -r name -s $stranded $f $annotation > ${f}.txt
+done

@@ -1,0 +1,40 @@
+### Venn diagram
+
+```{r venn, include = F}
+library(UpSetR)
+
+#TODO generate json for https://vcg.github.io/upset/
+
+df = res_joined_ordered_filtered
+symbol = global_vars$symbol
+res_venn = lapply(df, function(x) {x[["symbol"]]})
+num_groups = length(res_venn)
+print(num_groups)
+text_scale = 0
+point_size = 0
+
+if(num_groups > 1) {
+  # venn diagrams
+  venny_genes <- list(lapply(df, function(x) {return(x$ensembl_gene_id)}))
+  venny_genes <- venny_genes[[1]]
+  venny_genes_upset <- unique(unlist(unname(venny_genes)))
+  venny_df <- cbind(sapply(venny_genes, function(x) {venny_genes_upset %in% x}))
+  venny_df[venny_df == FALSE] <- 0
+  venny_df[venny_df == TRUE] <- 1
+  venny_df <- data.frame(venny_df, stringsAsFactors = F)
+  venny_df <- lapply(venny_df, as.numeric)
+  venny_df <- cbind.data.frame(name = venny_genes_upset, venny_df)
+  
+  png(filename=paste0(global_vars$output_dir,"/venn.png"), width = 6000, height = 4000, res = 600)   
+    upset(venny_df, nsets = num_groups, keep.order = T, nintersects = NA, mb.ratio = c(0.7, 0.3), point.size = 1.5, text.scale = 1.5, show.numbers = "yes", number.angles = 20)
+  dev.off()
+}
+```
+
+```{r venn_display, echo = F}
+if(num_groups > 1) {
+  knitr::include_graphics(paste0(global_vars$output_dir,"/venn.png"))
+}
+```
+
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+#dexseq run
+
+fbname=$1
+annotation=$2
+stranded=$3
+paired=$4
+
+python2 /usr/local/bin/dexseq_count.py -f bam -r pos -s $stranded -p $paired $annotation ${fbname}.bam ${fbname}_dx.txt

@@ -1,0 +1,12 @@
+### Samples heatmap
+
+```{r heatmap, echo=FALSE, fig.width = 8}
+
+# TODO needs update for multiple contrasts
+# heatmap
+select <- order(rowVars(counts(dds,normalized=TRUE)), decreasing=TRUE)[1:2000]
+df <- as.data.frame(colData(dds)[,c("condition")])
+names(df) <- ("condition")
+rownames(df) <- colnames(dds)
+pheatmap(assay(rld)[select,], cluster_rows=TRUE, show_rownames=FALSE, cluster_cols=TRUE, annotation_col=df, scale = "row", clustering_distance_rows = "correlation", clustering_distance_cols = "correlation")
+```

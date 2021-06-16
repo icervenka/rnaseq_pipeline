@@ -1,0 +1,8 @@
+#!/bin/bash
+#htseq run
+
+fbname=$1
+annotation=$2
+stranded=$3
+
+htseq-count -f bam -r pos -s $stranded ${fbname}.bam $annotation > ${fbname}.txt

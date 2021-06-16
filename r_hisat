@@ -1,0 +1,12 @@
+#!/bin/bash
+# hisat2 run
+
+fbname=$1
+index=$2
+
+printf $fbname >> hisat_log.txt
+printf "\n" >> hisat_log.txt
+hisat2 -q -p 16 -x $index -U ${fbname}.fastq -S ${fbname}.sam >> hisat_log.txt 2>&1
+printf "\n" >> hisat_log.txt
+samtools view -uS ${fbname}.sam | samtools sort -@ 16 - $fbname
+rm -f ${fbname}.sam

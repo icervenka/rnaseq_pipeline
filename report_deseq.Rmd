@@ -1,0 +1,53 @@
+---
+title: "RNASeq analysis"
+author: "icervenka"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  html_document:
+    toc: no
+    toc_depth: 3
+    toc_float: yes
+  html_notebook:
+    toc: no
+    toc_depth: 3
+    toc_float: yes
+---
+
+```{r child = 'rmd_child/init.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/hisat.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/htseq.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/fc_summary.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/fc_ma.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/result_links.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/result_tables.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/cook.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/sample_heatmap.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/sts.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/pca.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/volcano.Rmd', eval = T}
+```
+
+```{r child = 'rmd_child/venn.Rmd', eval = T}
+```

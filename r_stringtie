@@ -1,0 +1,9 @@
+#!/bin/bash
+#first pass stringtie run
+
+fbname=$1
+directory=$2
+annotation=$3
+
+stringtie -p 16 ${fbname}.bam -G $annotation -l $fbname -o ${fbname}.gtf
+printf "${fbname}.gtf\n" >> stringtie_mergelist.txt

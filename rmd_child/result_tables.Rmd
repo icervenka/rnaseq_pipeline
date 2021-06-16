@@ -1,0 +1,16 @@
+### Diferentially expressed genes
+
+```{r tables, echo=FALSE, results='asis'}
+max_rows = 5000
+df = res_joined_ordered_filtered
+
+for(x in names(df)) {
+  number_rows = dim(df[[x]])[1]
+  display_rows = ifelse(number_rows > max_rows, max_rows, number_rows)
+  rownames(df[[x]]) = NULL
+  cat(paste0("<h4>Differentially expressed genes for condition: ",x,"</h4>"))
+  cat(kable(df[[x]][1:display_rows,]) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")))
+}
+
+```

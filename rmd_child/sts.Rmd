@@ -1,0 +1,15 @@
+### Sample-to-sample distances
+
+```{r sts, fig.width=8,  fig.height=7, echo=FALSE}
+
+#load("rnaseq_h.Rdata")
+
+# sample-to-sample distances
+sampleDists <- dist(t(assay(rld)))
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- paste(rownames(colData(rld)), rld$condition, sep=" - ")
+colnames(sampleDistMatrix) <- paste(rownames(colData(rld)), rld$condition, sep=" - ") #NULL
+
+colors <- colorRampPalette( rev(brewer.pal(9, "Spectral")) )(255)
+pheatmap(sampleDistMatrix, clustering_distance_rows=sampleDists, clustering_distance_cols=sampleDists, col=colors, cellheight = 10)
+```

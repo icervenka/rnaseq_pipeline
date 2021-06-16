@@ -1,0 +1,24 @@
+
+### Result files
+
+#### All genes
+
+```{r links_all, echo=FALSE, results='asis'}
+#TODO change directory to local for report
+files_all = list.files(global_vars$output_dir, pattern = "_all.txt")
+for(x in files_all) {
+string = paste0("* ","#####","[",x,"]","(","./",x,")", "\n")
+cat(sprintf(string))
+}
+```
+
+#### Significant genes
+
+```{r links_filtered, echo=FALSE, results='asis'}
+#TODO change directory to local for report
+files_filtered = list.files(global_vars$output_dir, pattern = "_filtered.txt")
+for(x in files_filtered) {
+string = paste0("* ","#####","[",x,"]","(","./",x,")", "\n")
+cat(sprintf(string))
+}
+```

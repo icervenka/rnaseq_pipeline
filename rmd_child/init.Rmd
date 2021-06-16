@@ -1,0 +1,42 @@
+```{css, include=FALSE}
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+```
+
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
+<script src="http://code.jquery.com/jquery-2.1.2.min.js"></script>
+<script src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+         $(document).ready(function() {
+             $("table").DataTable();
+         } );
+</script>
+
+```{r packages, include=FALSE}
+library(knitr)
+library(DESeq2)
+library(pheatmap)
+library(RColorBrewer)
+library(ggplot2)
+library(gridExtra)
+library(purrr)
+library(kableExtra)
+library(rjson)
+```
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+options(knitr.table.format = "html")
+knitr::opts_knit$set(root.dir = directory)
+```
+
+```{r initialization, include=FALSE}
+global_vars <- fromJSON(file="global_vars.json")
+#load(paste0(global_vars$file_prefix, ".Rdata"))
+```

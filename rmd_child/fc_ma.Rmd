@@ -1,0 +1,19 @@
+### MA plots
+
+```{r fc2, fig.width = 8, fig.height=4, echo=FALSE}
+#load("rnaseq_h.Rdata")
+
+# plot log fold change vs normalized counts
+for(x in names(res_joined)) {
+
+  print(ggplot(res_joined[[x]], aes(x = log2(baseMean), y=log2FoldChange, color = padj < 0.05 & !is.na(padj))) +
+    geom_point(size=0.7) +
+    ggtitle(paste0("MA plot - ", x)) +
+    xlab("Log mean expression value") + 
+    ylab("Log 2 Fold Change") + 
+    coord_cartesian(ylim = c(-7,7)) +
+    theme_bw() +
+    theme(legend.position = "none", plot.title = element_text(size=16)) + 
+    scale_color_manual(values = volPallete))
+}
+```

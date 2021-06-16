@@ -1,0 +1,18 @@
+### PCA plot
+
+```{r pca, fig.width = 8, echo=FALSE}
+library("rbokeh", lib.loc="~/R/x86_64-pc-linux-gnu-library/3.4")
+
+# PCA plot
+pca = plotPCA(rld, intgroup=c("condition"), returnData = TRUE)
+
+x_lab = paste0("PC1: ",round(attributes(pca)$percentVar[1] * 100),"% variance")
+y_lab = paste0("PC2: ",round(attributes(pca)$percentVar[2] * 100),"% variance")
+
+p <- figure(xlab=x_lab, ylab=y_lab, width = 500, height = 500) %>%
+  ly_points(PC1, PC2, data = pca,
+    color = group,
+    hover = name,
+    size=15)
+p
+```

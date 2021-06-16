@@ -1,0 +1,15 @@
+#!/bin/bash
+#stringtie second pass - merging
+
+annotation=$1
+
+stringtie --merge -p 16 -G $annotation -o stringtie_merged.gtf stringtie_mergelist.txt
+
+for gf in *.gtf
+  do
+  fbname=$(basename "$gf" | cut -d. -f1)
+  if [ "$fbname" == "stringtie_merged" ] ; then
+        continue;
+  fi
+  stringtie -p 16 -e -B ${fbname}.bam -G stringtie_merged.gtf -o ballgown/${fbname}/${fbname}.gtf
+done

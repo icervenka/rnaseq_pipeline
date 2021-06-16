@@ -1,0 +1,10 @@
+## Identification of differentially expressed genes
+
+### Log2 fold changes of normalized counts
+
+```{r fc1, echo=FALSE}
+#load("rnaseq_h.Rdata")
+
+kable(summary_log, caption="Gene summary produced by analysis of differential gene expression") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```

@@ -1,0 +1,30 @@
+### Volcano plots
+
+```{r volcano, echo=FALSE, results='asis'}
+
+library("rbokeh", lib.loc="~/R/x86_64-pc-linux-gnu-library/3.4")
+
+df = res_joined
+symbol = global_vars$symbol
+plots = list()
+i = 1
+
+plots = lapply(df, function(name) {
+
+  x = name
+  x$threshold = as.factor(ifelse(x$padj < 0.05, ifelse(abs(x$log2FoldChange) > 0.6, "3 high FC", "2 low FC"), "1 ns"))
+  
+  p <- figure() %>%
+  ly_points(log2FoldChange, -log10(pvalue), data = x,
+    color = threshold,
+    hover = symbol,
+    size=7)
+  i = i+1
+  return(p)
+  
+}
+)
+
+grid_plot(plots, ncol = 1, height = length(plots)*500, width = 500)
+
+```

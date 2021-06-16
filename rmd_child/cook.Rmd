@@ -1,0 +1,7 @@
+### Cook's distances - outlier detection
+
+```{r cook, echo=FALSE, fig.width = 8}
+#load("rnaseq_h.Rdata")
+boxplot(log10(assays(dds2)[["cooks"]]), ylab = "Cook's distances", range=0, las=2, col = '#ff7f0e')
+
+```

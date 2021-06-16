@@ -1,0 +1,25 @@
+#!/bin/bash
+
+index=$1
+
+for f in */ ; do
+	i=0
+	cd $f
+	while read line; do
+		array[ $i ]="$line"
+		(( i++ ))
+	done < <(ls)
+
+	BASENAME="$(echo ${array[0]} | rev | cut -d"_" -f2-  | rev)"
+	
+	printf $BASENAME >> ../hisat_log.txt
+        hisat2 -q -p 16 -x $index -1 ${array[0]} -2 ${array[1]} -S ${BASENAME}.sam >> ../hisat_log.txt 2>&1
+        printf "\n" >> ../hisat_log.txt
+	
+        samtools view -uS ${BASENAME}.sam | samtools sort -n -@ 16 - $BASENAME
+        rm -f ${BASENAME}.sam
+	
+
+	cd ..
+done
+	
